@@ -19,6 +19,8 @@ public class Controller {
         return "hello Admin";
     }
 
+
+
     @RequestMapping( value = "/hello", method = RequestMethod.GET, produces = "application/json")
     public ResponseEntity<Users> getMessageAll(@RequestHeader HttpHeaders headers) {
 
@@ -31,11 +33,14 @@ public class Controller {
 
         RestTemplate restTemplate = new RestTemplate();
 
+        log.info(" info1: " + headers.keySet( ));
+
         HttpEntity<String> entity = new HttpEntity<String>(headers);
         ResponseEntity<Users> responseEntity = restTemplate.exchange("http://localhost:9000/asd", HttpMethod.GET, entity, Users.class);
         return responseEntity;
 
     }
+
 
 
 }
